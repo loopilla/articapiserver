@@ -1,12 +1,15 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { AuthUtils } from 'src/utils/authUtils';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
   ) {}
 
   async signIn(
@@ -15,7 +18,17 @@ export class AuthService {
   ): Promise<any> {
     const user = await this.userService.findOne(email);
 
-    if (user?.password !== pwd) {
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+
+    const verified = AuthUtils.verifyHash(
+      user.password,
+      user.salt,
+      pwd,
+    );
+
+    if (!verified) {
       throw new UnauthorizedException();
     }
 
