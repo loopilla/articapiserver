@@ -1,10 +1,13 @@
 import { Knex } from "knex";
 
-const tableName = 'user';
+const tableName = 'users';
 
 export async function up(knex: Knex): Promise<void> {
-  await knex.schema.hasTable(tableName) &&
-  knex.schema.createTable(
+  const hasTable = await knex.schema.hasTable(tableName);
+  console.log(`hasTable: ${hasTable}`);
+
+  // await !knex.schema.hasTable(tableName) &&
+  await knex.schema.createTableIfNotExists(
     tableName,
     (table) => {
       table
@@ -18,8 +21,16 @@ export async function up(knex: Knex): Promise<void> {
       table
         .string('password')
         .notNullable();
+
       table.timestamps(true, true);
+
+      table
+        .timestamp('deletedAt')
+        .nullable();
+      console.log('-- Users created --');
     });
+
+    
 }
 
 
