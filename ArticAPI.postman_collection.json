@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "133ec8c6-6c86-47f2-9889-554606face16",
+		"name": "ArticAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "520355"
+	},
+	"item": [
+		{
+			"name": "Signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"user1@email.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/auth/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Artwork by id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/artic/artworks/129884",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"artic",
+						"artworks",
+						"129884"
+					],
+					"query": [
+						{
+							"key": "authorization",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsInN1YiI6ImMwNTc4NjEyLWVlNjAtMTFlZC1hNzRiLTAyNDJhYzEzMDAwMyIsImlhdCI6MTY4MzYzNjY1NCwiZXhwIjoxNjgzNjM4NDU0fQ.9UgysZv7XYs9SYSrFU1PpGj0zaEdSIBHFZm5YsH6LPc",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase artwork",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/purchase/129885",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"purchase",
+						"129885"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List purchased artworks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/purchase/artworks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"purchase",
+						"artworks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get artwork paged list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/artic/artworks?page=6&limit=10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"artic",
+						"artworks"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "6"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "jwt",
+		"jwt": [
+			{
+				"key": "algorithm",
+				"value": "HS256",
+				"type": "string"
+			},
+			{
+				"key": "isSecretBase64Encoded",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "payload",
+				"value": "{}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "headerPrefix",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "queryParamKey",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "header",
+				"value": "{}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsInN1YiI6ImMwNTc4NjEyLWVlNjAtMTFlZC1hNzRiLTAyNDJhYzEzMDAwMyIsImlhdCI6MTY4MzY1NTA3MCwiZXhwIjoxNjgzNjU2ODcwfQ.8WkXQ1TQ_OKBkxh72NN8QCeXIUUU9YVNEZfpuZ-UJRs",
+			"type": "string"
+		}
+	]
+}

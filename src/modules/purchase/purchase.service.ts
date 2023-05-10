@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ArticService } from '../artic/artic.service';
-import { Purchase } from './purchase.model';
+import { PurchaseModel } from './purchase.model';
 import { ModelClass } from 'objection';
 import { InjectModel } from 'nestjs-objection/dist';
 import { Artwork } from '../artic/artic.interfaces';
@@ -9,7 +9,7 @@ import { Artwork } from '../artic/artic.interfaces';
 export class PurchaseService {
   constructor(
     private readonly articService: ArticService,
-    @InjectModel(Purchase) private readonly purchaseModel: ModelClass<Purchase>,
+    @InjectModel(PurchaseModel) private readonly purchaseModel: ModelClass<PurchaseModel>,
   ) {}
 
   async purchaseItem(

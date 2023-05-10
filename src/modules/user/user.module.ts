@@ -1,15 +1,11 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ObjectionModule } from 'nestjs-objection/dist';
-import { User } from './user.model';
-// import { PurchaseModule } from '../purchase/purchase.module';
-// import { ArticModule } from '../artic/artic.module';
+import { UserModel } from './user.model';
 
 @Module({
   imports: [
-    // PurchaseModule,
-    // ArticModule,
-    ObjectionModule.forFeature([User])
+    ObjectionModule.forFeature([UserModel])
   ],
   providers: [UserService],
   exports: [UserService],

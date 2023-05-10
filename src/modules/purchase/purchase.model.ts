@@ -1,9 +1,9 @@
 import { Column, Relation, Table, columnTypes, relationTypes } from 'nestjs-objection/dist';
 import { BaseModel } from '../base/base.model';
-import { User } from '../user/user.model';
+import { UserModel } from '../user/user.model';
 
 @Table({tableName: 'purchase'})
-export class Purchase extends BaseModel {
+export class PurchaseModel extends BaseModel {
   @Column({ type: columnTypes.uuid, notNullable: true })
   id: string;
 
@@ -14,12 +14,12 @@ export class Purchase extends BaseModel {
   artworkId: string;
 
   @Relation({
-    modelClass: User,
+    modelClass: UserModel,
     relation: relationTypes.HasOneRelation,
     join: {
       from: 'user.id',
       to: 'purchase.user_id',
     },
   })
-  owner: User;
+  owner: UserModel;
 }

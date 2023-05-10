@@ -3,12 +3,12 @@ import { PurchaseService } from './purchase.service';
 import { ArticModule } from '../artic/artic.module';
 import { PurchaseController } from './purchase.controller';
 import { ObjectionModule } from 'nestjs-objection/dist';
-import { Purchase } from './purchase.model';
+import { PurchaseModel } from './purchase.model';
 
 @Module({
   imports: [
     ArticModule,
-    ObjectionModule.forFeature([Purchase])
+    ObjectionModule.forFeature([PurchaseModel])
   ],
   providers: [PurchaseService],
   controllers: [PurchaseController],

@@ -1,15 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ModelClass } from 'objection';
-import { User } from './user.model';
+import { UserModel } from './user.model';
 import { InjectModel } from 'nestjs-objection/dist';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel(User) private readonly userModel: ModelClass<User>,
+    @InjectModel(UserModel) private userModel: ModelClass<UserModel>,
   ) {}
 
-  async findOne(email: string): Promise<User | undefined> {
+  async findOne(email: string): Promise<UserModel | undefined> {
     const user = this.userModel.query().findOne({
       email
     });

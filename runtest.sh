@@ -1,0 +1,1 @@
+docker exec -it articapp sh -c "yarn test"

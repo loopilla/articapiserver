@@ -31,7 +31,7 @@ export class ArticController {
    * @returns Artwork[]
    */
   @UseGuards(JwtAuthGuard)
-  @Get('')
+  @Get()
   async find(
     @Query('page') page: string,
     @Query('limit') limit: string,
