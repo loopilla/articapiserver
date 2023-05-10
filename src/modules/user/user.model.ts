@@ -1,5 +1,7 @@
-import { Column, Table, columnTypes } from "nestjs-objection/dist";
+import { Column, Relation, Table, columnTypes, relationTypes } from 'nestjs-objection/dist';
 import { BaseModel } from '../base/base.model';
+import { Purchase } from '../purchase/purchase.model';
+import { Artwork } from '../artic/artic.interfaces';
 
 @Table({tableName: 'users'})
 export class User extends BaseModel {
@@ -14,4 +16,14 @@ export class User extends BaseModel {
 
   @Column({ type: columnTypes.string, notNullable: true })
   salt: string;
+
+  @Relation({
+    modelClass: Purchase,
+    relation: relationTypes.HasManyRelation,
+    join: {
+      from: 'users.id',
+      to: 'purchase.user_id',
+    },
+  })
+  purchases: [Purchase];
 }

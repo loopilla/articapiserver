@@ -1,6 +1,6 @@
-import { Knex } from "knex";
+import { Knex } from 'knex';
 
-const tableName = 'users';
+export const tableName = 'purchase';
 
 export async function up(knex: Knex): Promise<void> {
   const hasTable = await knex.schema.hasTable(tableName);
@@ -12,21 +12,19 @@ export async function up(knex: Knex): Promise<void> {
         .uuid('id')
         .notNullable()
         .unique()
+        .primary()
         .defaultTo(knex.raw('(UUID())'));
       table
-        .string('email')
+        .uuid('user_id')
         .notNullable();
       table
-        .string('password')
-        .notNullable();
-      table
-        .string('salt')
+        .uuid('artwork_id')
         .notNullable();
 
       table.timestamps(true, true);
 
       table
-        .timestamp('deletedAt')
+        .timestamp('deleted_at')
         .nullable();
     });
 }
@@ -35,3 +33,4 @@ export async function up(knex: Knex): Promise<void> {
 export async function down(knex: Knex): Promise<void> {
   await knex.schema.dropTable(tableName);
 }
+

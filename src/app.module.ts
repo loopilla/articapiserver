@@ -9,6 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { knexSnakeCaseMappers } from 'objection';
 import { SoftDeleteModel } from 'nestjs-objection';
 import { AuthModule } from './modules/auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AuthModule } from './modules/auth/auth.module';
     ArticModule,
     PurchaseModule,
     AuthModule,
+    JwtModule,
     ObjectionModule.forRootAsync({
       imports: [ConfigModule.forRoot()],
       inject: [ConfigService],

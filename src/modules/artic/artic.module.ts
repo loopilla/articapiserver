@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule,
     HttpModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -17,6 +18,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
   ],
   controllers: [ArticController],
-  providers: [ArticService]
+  providers: [ArticService],
+  exports: [ArticService],
 })
 export class ArticModule {}

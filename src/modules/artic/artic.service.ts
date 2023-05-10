@@ -36,4 +36,18 @@ export class ArticService {
 
     return data?.data;
   }
+
+  async findByIds(
+    ids: string[]
+  ): Promise<Artwork[]> {
+    const { data } = await firstValueFrom(
+      this.httpService.get(`?ids=${ids.join(',')}&fields=${Fields.join(',')}`).pipe(
+        catchError((error: AxiosError) => {
+          throw 'Unable to serve the request!';
+        }),
+      )
+    );
+
+    return data?.data;
+  }
 }

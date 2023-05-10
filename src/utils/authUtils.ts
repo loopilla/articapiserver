@@ -18,11 +18,11 @@ export class AuthUtils {
     password: string,
     salt: string,
   ): string {
-    return crypto.createHash("sha256")
+    return crypto.createHash('sha256')
       .update(password)
-      .update(crypto.createHash("sha256")
-      .update(salt, "hex").digest("hex"))
-      .digest("hex");
+      .update(crypto.createHash('sha256')
+      .update(salt, 'hex').digest('hex'))
+      .digest('hex');
   }
 
   public static getSaltAndHash(
