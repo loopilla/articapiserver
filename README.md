@@ -37,7 +37,7 @@ Open a new tab in you browser with the http://localhost:8080 and fill the parame
 
 
 Warning! The application stores the data inside the running container, so each time you restart the container the stored data will be lost.
-This is because, I did not want to make trash on the host machine. Of course in a real application you should store the database data on the host.
+The reason is, I did not want to make trash on the host machine. Of course in a real application you should store the database in a persistent volume and the data file is stored on the host machine.
 
 
 #Environment variables
@@ -51,7 +51,16 @@ The tests can be run with in a separate terminal:
 ./test.sh
 ``
 
-This going to run the tests apart from the app in an independent thread. So for tests you don't need to have a running application.
+This going to run the tests apart from the app in an independent thread. So for tests you don't need to have a running application. Tried to mock a lot, but ...
+
+I have attached a Postman collection file:
+  ArticAPI.postman_collection.json
+
+If you import it into Postman you can run the requests.
+
+First signin, this will results a token: Bearer ....
+You should set this token into the collection's token variable, because all guarded endpoint is refering to it in the request header/authorization property.
 
 # Notes
-As the artworks are not stored on the app side, I did not set up relation between the user and the purchase for the sake of simplicity.
+ - As the artworks are not stored on the app side.
+ - Yeah, I have ran into problem to mock the objection's QueryBuilder<..> class for testing, so I will work it out.

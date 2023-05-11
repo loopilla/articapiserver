@@ -15,7 +15,7 @@ export class PurchaseService {
   async purchaseItem(
     userId: string,
     artworkId: string,
-  ): Promise<any> {
+  ): Promise<Artwork> {
     const artwork = await this.articService.findOne(artworkId);
 
     const isPurchased = await this.isArtworkAlreadyPurchased(artwork.id);
@@ -32,7 +32,7 @@ export class PurchaseService {
       throw new HttpException(`Internal server error`, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    return true;
+    return artwork;
   }
 
   async getUserArtworkIds(

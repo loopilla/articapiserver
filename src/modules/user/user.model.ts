@@ -17,13 +17,13 @@ export class UserModel extends BaseModel {
   @Column({ type: columnTypes.string, notNullable: true })
   salt!: string;
 
-  // @Relation({
-  //   modelClass: Purchase,
-  //   relation: relationTypes.HasManyRelation,
-  //   join: {
-  //     from: 'users.id',
-  //     to: 'purchase.user_id',
-  //   },
-  // })
-  // purchases: [Purchase];
+  @Relation({
+    modelClass: PurchaseModel,
+    relation: relationTypes.HasManyRelation,
+    join: {
+      from: 'users.id',
+      to: 'purchase.user_id',
+    },
+  })
+  purchases: [PurchaseModel];
 }
